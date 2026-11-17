@@ -1,0 +1,58 @@
+site_name: AHEAD User Manual
+site_description: Platform navigation and data entry procedures for the AHEAD platform
+theme:
+  name: material
+  language: en
+  features:
+    - navigation.tabs # Top tabs for the main sections
+    - navigation.sections # Group entries in the left menu
+    - navigation.indexes # Section titles open their index page
+    - navigation.footer # Previous / next links at the bottom of each page
+    - navigation.top # "Back to top" button
+    - search.suggest # Suggestions while typing in search
+    - search.highlight # Highlight search terms on the page
+
+plugins:
+  - search
+  - to-pdf:
+      author: Federica Gaspari, Anna Faiella
+      # PDF is only generated when ENABLE_PDF_EXPORT=1 (set in the GitHub workflow).
+      # WeasyPrint still needs GTK/Pango installed (see environment.yml for Windows).
+      enabled_if_env: ENABLE_PDF_EXPORT
+
+markdown_extensions:
+  - admonition # !!! note / warning boxes
+  - attr_list # { width="300" } on images
+  - md_in_html # Markdown inside <figure> blocks
+  - def_list # "Term" + ":   definition" lists
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+
+nav:
+  - Home: index.md
+  - Getting started:
+      - Platform layout: getting-started/navigation.md
+      - Dashboard: getting-started/dashboard.md
+  - Data entry:
+      - Events: data-entry/events.md
+      - Owner Profiles: data-entry/owner-profiles.md
+      - Baseline Information:
+          - data-entry/baseline/index.md
+          - Registering a farm: data-entry/baseline/register-farm.md
+          - Elements & Production: data-entry/baseline/elements-production.md
+  - Damage & Loss Assessment:
+      - assessment/index.md
+      - Recording damage: assessment/damage-records.md
+      - Economic losses: assessment/economic-losses.md
+  - Queries & Reporting:
+      - analysis/index.md
+      - Damage Query: analysis/damage-query.md
+      - Event Cost Analysis: analysis/event-cost-analysis.md
+  - Example:
+      - Regione Lombardia testbed: examples/lombardia.md

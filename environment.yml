@@ -1,0 +1,29 @@
+# Conda environment for building this guide, including the PDF export.
+# Everything comes from conda-forge only: mixing in the default channel
+# (pkgs/main) breaks WeasyPrint on Windows with DLL errors.
+#
+#   conda env create -f environment.yml
+#   conda activate ahead-docs
+#   mkdocs serve                          (fast, no PDF)
+#   set ENABLE_PDF_EXPORT=1               (then, on the next line:)
+#   mkdocs build                          (with PDF)
+name: ahead-docs
+channels:
+  - conda-forge
+  - nodefaults
+dependencies:
+  - python=3.12
+  - pango
+  - cairo
+  - libglib
+  - fontconfig
+  - freetype
+  - harfbuzz
+  - libexpat
+  - pip
+  - pip:
+      - -r requirements.txt
+variables:
+  # Windows only: tells WeasyPrint where the GTK/Pango DLLs are.
+  # Adjust if conda keeps your environments somewhere else.
+  WEASYPRINT_DLL_DIRECTORIES: '%CONDA_PREFIX%\Library\bin'

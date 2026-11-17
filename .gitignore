@@ -1,0 +1,11 @@
+# MkDocs build output (GitHub Actions rebuilds it on every push)
+site/
+
+# Old data dictionary pages, kept locally until deleted
+_to_delete/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
